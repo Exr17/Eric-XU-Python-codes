@@ -78,7 +78,7 @@ class Hashtable:
         Table=self.table
         hash=self.hash
         N=self.N
-#On créer ici les nouveaux paramètres, on a décidé de doubler la taille du dictionnaire, et on garde la même fonction de hashage.
+#On crée ici les nouveaux paramètres, on a décidé de doubler la taille du dictionnaire, et on garde la même fonction de hashage.
         NewN=2*N
         NewTable=Hashtable(hash,NewN)
         Donnees=[]
@@ -92,7 +92,7 @@ class Hashtable:
         for k in Donnees:
             NewTable.put(k[0],k[1])
 
-        #Et finalement, on ne créer pas de nouvelles tables, on garde la même, on la modifie seulement.
+        #Et finalement, on ne crée pas de nouvelles tables, on garde la même, on la modifie seulement.
         self.table = NewTable.table
         self.N = NewTable.N
         self.nb_elements = NewTable.nb_elements
