@@ -164,7 +164,7 @@ def Temps(N):
     Listetempsget=[]
     for k in range(N):
         debut=time.perf_counter()
-        H.put2(str(k),1)
+        H.put2(str(k),1) #J'ajoute ici str(k) pour ajouter à chaque fois des clés différentes
         fin=time.perf_counter()
         tempsput=fin-debut
         debut=time.perf_counter()
