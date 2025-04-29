@@ -1,5 +1,5 @@
 
-
+#Exercice 1: 
 #Fonction de hachage : somme des codes ASCII des caractères
 h = lambda x: sum([ord(c) for c in x])
 
