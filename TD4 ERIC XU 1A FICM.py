@@ -1,8 +1,8 @@
-
+        
 #Exercice 1: 
 #Fonction de hachage : somme des codes ASCII des caractères
 h = lambda x: sum([ord(c) for c in x])
-
+#######################################################################################################################
 #Création de classe d'objets :"Dictionnaire"
 class Hashtable:
     #Méthode permettant d'initialiser la tablec à partir d'une fonction de hachage et de la taille de la table N'
@@ -13,7 +13,7 @@ class Hashtable:
         self.N=N
         self.nb_elements=len(L)
         #On définit ici les variables pour retrouver les caractéristiques importantes des tables
-
+#######################################################################################################################
     #Méthode permettant d'ajouter dans le dictionnaire
     def put(self,key,value):
         Table=self.table
@@ -39,7 +39,7 @@ class Hashtable:
             for k in range(len(Collisionkeys)):
                 if Collisionkeys[k]==key:
                     Table[index][k][1]=value
-
+#######################################################################################################################
     #Méthode permettant d'obtenir la valeur en donnant en paramètre la clé
 
     def get(self,key):
@@ -55,7 +55,7 @@ class Hashtable:
             for k in Table[index]:
                 if k[0]==key:
                     return(k[1])
-
+#######################################################################################################################
     #Méthode permettant d'avoir un graphique montrant le nombre de collisions dans une table.
     def repartition(self):
         import matplotlib.pyplot as plt
@@ -71,7 +71,7 @@ class Hashtable:
         width = 1/1.5
         plt.bar(x, y, width, color="blue")
         plt.show()
-
+#######################################################################################################################
 #Exercice 6:
     #Méthode permettant de redimensionner une table, en réinsérant aux bons emplacements les différents éléments
     def resize(self):
@@ -96,7 +96,7 @@ class Hashtable:
         self.table = NewTable.table
         self.N = NewTable.N
         self.nb_elements = NewTable.nb_elements
-
+#######################################################################################################################
     #Méthode permettant d'ajouter un couple (clé, valeur) en redimensionnant si besoin lorsque la table est suffisamment remplie avec resize
 
     def put2(self,key,value):
@@ -129,7 +129,7 @@ class Hashtable:
                     Table[index][k][1]=value
 
 
-
+#######################################################################################################################
 
 
 
@@ -153,10 +153,8 @@ def repartitiondictionnaire():
     for k in dictionnaire:
         H.put(k,len(k))
     H.repartition()
-
+#######################################################################################################################
 import time
-
-
 #Fonction permettant de mesurer le temps moyen de la fonction put2 et get pour vérifier qu'on a bien du temps constant.
 def Temps(N):
     H=Hashtable(h,10)
@@ -183,7 +181,8 @@ def Temps(N):
     print("Le temps du put est :", tempsmoyenput)
     print("Le temps du get est :", tempsmoyenget)
 
-
+#######################################################################################################################
+#######################################################################################################################
 
 
 
