@@ -1,4 +1,4 @@
-#TD5: Entrelacs, le jeu.
+#TD5: Entrelacs.
 
 # Importation des modules de Tkinter pour avoir une interface graphique
 from tkinter import Tk, Canvas, Button, Label
