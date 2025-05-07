@@ -1,11 +1,11 @@
-#TD5: Entrelacs
+#TD5: Entrelacs, le jeu.
 
 # Importation des modules de Tkinter pour avoir une interface graphique
 from tkinter import Tk, Canvas, Button, Label
 root = Tk()
 root.title("Je suis une interface graphique")
-root.geometry("12000x12000")
-canvas = Canvas(root, width=200, height=100)
+#root.geometry("12000x12000")
+canvas = Canvas(root, width=650, height=200, background="white")
 canvas.grid(column =0, row =0,columnspan=5)
 # Création de la fenêtre, en définissant la taille et création du canva
 
@@ -28,7 +28,7 @@ def read_word(canvas, mot, h, w,departx,departy,color):
             x=x+w
             y=y+h
 
-Colors=['black','red','blue','green'] #Liste des couleurs, dans l'idéal, il faudrait une liste qui s'adapte avec le nombre de fils qu'on veut tracer, peut-être utiliser une fonction random pour choisir les couleurs.
+Colors=['black','red','blue','green']  #Liste des couleurs, dans l'idéal, il faudrait une liste qui s'adapte avec le nombre de fils qu'on veut tracer, peut-être utiliser une fonction random pour choisir les couleurs.
 
 
 
@@ -57,17 +57,17 @@ def entrelacs(Liste,nb_fils,Colors):
 #On trace ici les traits avec une boucle en appelant la fonction read_word
 #Exercice 3 : On ajoute des couleurs aux fils
     for num_fil in range(len(Mots)):
-        read_word(canvas, Mots[num_fil]+'H', 20,20,0,20+num_fil*20, Colors[num_fil])
+        read_word(canvas, Mots[num_fil]+'H', 60,60,0,20+num_fil*50, Colors[num_fil])
 
 #Cette partie correspond aux boutons et la description "croisement : [...]"
 #Exercice 4 : On ajoute les boutons Quit et Color
     Quit = Button(root,text="Quit", command=quitter)
-    Quit.grid(row=150,column=1)
+    Quit.grid(row=2,column=1)
     ColorButton = Button(root,text="Color", command=recolorer)
-    ColorButton.grid(row=150,column=3)
+    ColorButton.grid(row=2,column=2 )
 #Exercice 5: On ajoute les tableaux des croisements.
-    Infoentrelacs =Label(root,text="Croisements              :"+str(Liste))
-    Infoentrelacs.grid(row=120,column=2)
+    Infoentrelacs =Label(root,text="                                         Croisements:         "+str(Liste))
+    Infoentrelacs.grid(row=1,column=1)
 
 #Ici j'ai un problème d'alignement des éléments, je sais pas si c'est dû à la taille des objets
 #Il y a conflit entre la description "Croisement=[...]" et les boutons Quit et colors.
@@ -81,7 +81,7 @@ def recolorer(): #Cette fonction permet d'écrire plusieurs tâches à faire, ce
     entrelacs(Liste,nb_fils,Newcolor)
 
 def quitter():
-    root.destroy()
+    root.quit()
     print("La page a été fermée") #J'ai ajouté cette ligne parce que la page ne se ferme pas sur mon ordinateur, mais comme j'ai le message de fermeture, je me dis que c'est juste un bug de mon ordi, ou une erreur de formule
 
 
