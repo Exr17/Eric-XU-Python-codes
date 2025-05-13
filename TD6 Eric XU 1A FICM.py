@@ -125,7 +125,7 @@ class App:   # Classe qui gère l'interface graphique
 
     def quitter(self):  # Fonction appelée pour quitter le programme
         self.root.destroy()
-        print("La page a été fermée")
+        print("La page a été fermée") #Je ne sais pas pourquoi sur Mac la commande self.root.destroy() ne marche pas. Ou partiellement, si je lance le programme deux fois, le bouton quitter marche sur la deuxième fenêtre mais pas sur la première 
 
     def recolorer(self):  # Fonction pour modifier les couleurs (permutation circulaire)
         Newcolor=self.couleurs.copy()
