@@ -115,7 +115,6 @@ def newposition():
             vit[i][1] = -vit[i][1]
             newpos[i][1] = max(0, min(HEIGHT, newpos[i][1]))
     
-     
     return newpos
 
 #La fonction Temps permet de faire passer le temps, pour simuler le mouvement.
