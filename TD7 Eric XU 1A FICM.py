@@ -1,23 +1,19 @@
 import numpy as np
 import random
-
 from tkinter import Tk, Canvas
-
+#Importation des bibliothèques utiles au TD
 # Initialisation du graph sur lequel on va travailler
 graph = [[2, 7, 3], [3, 4, 9, 10], [5, 8, 0], [10, 1, 4, 6, 0], 
          [3, 1, 6], [2], [3, 10, 4], [0], [2], [10, 1], [3, 1, 6, 9]]
-
-
-
+#Un pas de temps de 1.
 DeltaT=1
 # Dimensions de la fenêtre
-WIDTH, HEIGHT = 800, 800
-
+WIDTH= 800
+HEIGHT= 800
 # Création de la fenêtre
 root = Tk()
 root.title("Dessin du graph")
-# On crée le canva 
-
+# Création du Canvas
 canvas = Canvas(root, width=WIDTH, height=HEIGHT, background="white")
 canvas.grid(row=0, column=0)
  
@@ -25,11 +21,10 @@ canvas.grid(row=0, column=0)
 # Initialisation des positions aléatoires et vitesses aléatoires
 pos = np.array([(random.randint(50, WIDTH-50), random.randint(50, HEIGHT-50)) 
                 for i in range(len(graph))])
-
 vit = np.array([((random.random()-0.5)*10, (random.random()-0.5)*10) 
        for i in range(len(graph))])
 
-#exemple de dessin
+#Fonction permettant de dessiner le graphique
 def draw(can, graph, pos):
     can.delete("all")
 
@@ -42,8 +37,7 @@ def draw(can, graph, pos):
         for j in graph[i]:  
             can.create_text(pos[i][0],pos[i][1],text=str(i),fill="#ffffff")
     
-
-
+#Fonction modélisant la force de rappel élastique entre deux points 
 def Force(p1,p2):
     x1=pos[p1][0]
     y1=pos[p1][1]
@@ -55,7 +49,8 @@ def Force(p1,p2):
     u=np.array([(x1-x2)/l,(y1-y2)/l])
     F=k*(l0-l)*u
     return(F)
-
+         
+#Fonction modélisant la force de répulsion entre 2 points pour pas qu'ils se superposent
 def repulsion(p1,p2):
     x1=pos[p1][0]
     y1=pos[p1][1]
@@ -65,10 +60,10 @@ def repulsion(p1,p2):
     l=((x1-x2)**2+(y1-y2)**2)**0.5
     if l<100:
         u=np.array([(x1-x2)/l,(y1-y2)/l])
-        F=krepulsion*u/l
+        F=(krepulsion)*u/l
         return(F)
     return(0)
-
+#Pour calculer la somme des forces pour avoir m*a avec a l'accélération, on considère ici que m=1kg
 
 def Sommeforce(p):
     Somme = np.array([0.0, 0.0])
@@ -80,9 +75,11 @@ def Sommeforce(p):
             Somme+= repulsion(p,k)
 
     return Somme
-        
-frottement = 1  # entre 0 (fort amortissement) et 1 (aucun)
 
+#Je rajoute des frottements pour qu'il y ai une stabilisation après un certain temps
+frottement = 0.90  # entre 0 (fort amortissement) et 1 (aucun)
+
+#Fonction de calcul des nouvelles vitesses en fonction de la somme de force : m*a
 def newvitesse():
     global vit
     ListeFx = []
@@ -100,6 +97,7 @@ def newvitesse():
         ListeV.append([vx, vy])
     return ListeV
 
+#Les nouvelles positions après un temps DeltaT
 def newposition():
     newpos = pos.copy()
     vit=newvitesse()
@@ -120,6 +118,7 @@ def newposition():
      
     return newpos
 
+#La fonction Temps permet de faire passer le temps, pour simuler le mouvement.
 def Temps(event):
     global pos, vit
     vit=newvitesse()
@@ -128,15 +127,6 @@ def Temps(event):
     print(vit, pos)
     
 root.bind("<f>",Temps)
-
-        
-    
-    
-
-
-
-# Dessin initial
+# Position initiale 
 draw(canvas, graph, pos)
-
-
 root.mainloop()
